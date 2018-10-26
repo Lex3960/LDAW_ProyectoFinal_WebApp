@@ -1,0 +1,139 @@
+<style type="text/css">
+  body {
+    padding-left: 300px;
+  }
+
+  .footerBottom {
+    width:100%;
+    position: absolute;
+    padding-left: 300px;
+    right: 0;
+    bottom: 0;
+  }
+
+  .visibleNav {
+    transform: translateX(0%) !important;
+  }
+</style>
+
+<nav class="red lighten-1">
+  <div class="row">
+    <div class="col s12">
+      <div class="nav-wrapper">
+        <div class="col s12">
+         {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
+         {{#if (eq routeName 'auth.dashboard')}}
+            {{#link-to 'auth.dashboard' class="breadcrumb"}}Dashboard {{/link-to}}
+         {{else}}
+           {{#if (eq routeName 'auth.students.index')}}
+              {{#link-to 'auth.students' class="breadcrumb"}}Alumnos {{/link-to}}
+           {{else}}
+               {{#if (eq routeName 'auth.teachers.index')}}
+                  {{#link-to 'auth.teachers' class="breadcrumb"}}Profesores {{/link-to}}
+               {{else}}
+                   {{#if (eq routeName 'auth.contracts.index')}}
+                      {{#link-to 'auth.contracts' class="breadcrumb"}}Contratos {{/link-to}}
+                   {{else}}
+                       {{#if (eq routeName 'auth.subscribers.index')}}
+                          {{#link-to 'auth.subscribers' class="breadcrumb"}}Subscriptores {{/link-to}}
+                       {{else}}
+                       {{/if}}
+                   {{/if}}
+               {{/if}}
+           {{/if}}
+         {{/if}}
+       </div>
+       </div>
+    </div>
+  </div>
+</nav>
+
+{{#jquery-wrapper query='.sidenav' method='sidenav'}}
+  <ul id="slide-out" class="sidenav fixed visibleNav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="/media/books.jpeg">
+      </div>
+      <a><img class="circle" src="/media/admin.jpeg"></a>
+      <a><span class="white-text name">Admin 1</span></a>
+      <a><span class="white-text email">admin_academy@gmail.com</span></a>
+    </div></li>
+    <li class="{{if (eq routeName 'auth.dashboard') 'active'}}">
+      {{#link-to 'auth.dashboard'}}<i class="material-icons">home</i>Dashboard{{/link-to}}
+    </li>
+    <li class="{{if (eq routeName 'auth.students.index') 'active'}}">
+      {{#link-to 'auth.students'}}<i class="material-icons">cloud</i>Alumnos{{/link-to}}
+    </li>
+    <li class="{{if (eq routeName 'auth.teachers.index') 'active'}}">
+      {{#link-to 'auth.teachers'}}<i class="material-icons">cloud</i>Profesores{{/link-to}}
+    </li>
+    <li class="{{if (eq routeName 'auth.contracts.index') 'active'}}">
+      {{#link-to 'auth.contracts'}}<i class="material-icons">cloud</i>Contratos{{/link-to}}
+    </li>
+    <li class="{{if (eq routeName 'auth.subscribers.index') 'active'}}">
+      {{#link-to 'auth.subscribers'}}<i class="material-icons">cloud</i>Subscriptores{{/link-to}}
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Account</a></li>
+    <li>
+      {{#link-to 'login' class="waves-effect" href="#!"}}Sign Out{{/link-to}}
+    </li>
+  </ul>
+{{/jquery-wrapper}}
+
+{{outlet}}
+
+<footer class="page-footer footerBottom blue darken-1">
+  <div class="container">
+    <div class="row">
+      <div class="col s6 offset">
+        <h5 class="white-text">My English Academy</h5>
+      </div>
+      <div class="col s6">
+
+        {{#if (eq routeName 'auth.dashboard')}}
+          <button class="waves-effect waves-light btn-flat white-text">
+            <i class="material-icons left">add</i>Nuevo Profesor
+          </button>
+          <button class="waves-effect waves-light btn-flat white-text">
+            <i class="material-icons left">add</i>Nuevo Alumno
+          </button>
+          <button class="waves-effect waves-light btn-flat white-text" {{action 'newRecord' 'subscriber'}}>
+            <i class="material-icons left">add</i>Nuevo Subscriptor
+          </button>
+          {{else}}
+            {{#if (eq routeName 'auth.students.index')}}
+              <button class="waves-effect waves-light btn-flat white-text">
+                <i class="material-icons left">add</i>Nuevo Alumno
+              </button>
+            {{else}}
+                {{#if (eq routeName 'auth.teachers.index')}}
+                  <button class="waves-effect waves-light btn-flat white-text">
+                    <i class="material-icons left">add</i>Nuevo Profesor
+                  </button>
+                {{else}}
+                    {{#if (eq routeName 'auth.contracts.index')}}
+                      <button class="waves-effect waves-light btn-flat white-text">
+                        <i class="material-icons left">add</i>Nuevo Contrato
+                      </button>
+                    {{else}}
+                        {{#if (eq routeName 'auth.subscribers.index')}}
+                          <button class="waves-effect waves-light btn-flat white-text" {{action 'newRecord' 'subscriber'}}>
+                            <i class="material-icons left">add</i>Nuevo Subscriptor
+                          </button>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        {{/if}}
+
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2018 English Academy
+      <a class="grey-text text-lighten-4 right" href="https://github.com/Lex3960/LDAW_ProyectoFinal_WebApp">Developed by Alex Reséndiz</a>
+    </div>
+  </div>
+</footer>
