@@ -19,7 +19,7 @@
     }
 
     .container {
-        margin-top: 15%;
+        margin-top: 10%;
     }
 
     .material-icons {
@@ -54,6 +54,20 @@
     <div class="row">
       <div class="input-field col s10 offset-s1">
           <i class="material-icons prefix ">account_circle</i>
+          {{input type="text" value=name class="validate"}}
+          <label>Nombre</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+          <i class="material-icons prefix ">account_circle</i>
+          {{input type="text" value=lastname class="validate"}}
+          <label>Apellido</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10 offset-s1">
+          <i class="material-icons prefix ">account_circle</i>
           {{input type="email" value=email class="validate"}}
           <label>Correo Electrónico</label>
       </div>
@@ -70,9 +84,9 @@
         {{#link-to 'login' id='cancelar' class="waves-effect waves-light btn red left"}}
           Cancelar
         {{/link-to}}
-        <button type="submit" class="waves-effect waves-light btn red right" style="width:150px; margin-top: 5px;">
+        {{#link-to 'auth.dashboard' type="submit" class="waves-effect waves-light btn red right" style="width:150px; margin-top: 5px;"}}
           Registro
-        </button>
+        {{/link-to}}
       </div>
     </div>
     <br>

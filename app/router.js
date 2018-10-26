@@ -11,19 +11,15 @@ Router.map(function() {
   this.route('signup');
   this.route('auth', function() {
     this.route('dashboard');
-
     this.route('subscribers', function() {
       this.route('detail');
     });
-
     this.route('contracts', function() {
       this.route('detail');
     });
-
     this.route('students', function() {
       this.route('detail');
     });
-
     this.route('teachers', function() {
       this.route('detail');
     });
