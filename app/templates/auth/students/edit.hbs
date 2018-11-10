@@ -4,20 +4,10 @@
       <div class="nav-wrapper">
         <div class="col s12">
          {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
+         {{#link-to 'auth.students' class="breadcrumb"}}Alumnos {{/link-to}}
+         <a href="" class="breadcrumb"> Editar </a>
        </div>
        </div>
     </div>
   </div>
 </nav>
-
-<div class="row">
-  <div class="col s10 offset-s1">
-    <h4> Dashboard </h4>
-  </div>
-</div>
-
-{{#jquery-wrapper query='.parallax' method='parallax'}}
-  <div class="parallax-container">
-    <div class="parallax"><img src="/media/bg-3.jpg"></div>
-  </div>
-{{/jquery-wrapper}}

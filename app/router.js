@@ -12,17 +12,23 @@ Router.map(function() {
   this.route('auth', function() {
     this.route('dashboard');
     this.route('subscribers', function() {
-      this.route('detail');
+      this.route('new');
+      this.route('edit', {path:':subscriber_id'});
     });
     this.route('contracts', function() {
-      this.route('detail');
+      this.route('edit');
+      this.route('new');
     });
     this.route('students', function() {
-      this.route('detail');
+      this.route('new');
+      this.route('edit');
     });
     this.route('teachers', function() {
-      this.route('detail');
+      this.route('new');
+      this.route('edit');
     });
+
+    this.route('substudents', function() {});
   });
 });
 
