@@ -2,7 +2,6 @@
   body {
     padding-left: 300px;
   }
-
   .footerBottom {
     width:100%;
     position: absolute;
@@ -10,12 +9,12 @@
     right: 0;
     bottom: 0;
   }
-
   .visibleNav {
     transform: translateX(0%) !important;
   }
 </style>
 
+<!-- SIDENAV -->
 {{#jquery-wrapper query='.sidenav' method='sidenav'}}
   <ul id="slide-out" class="sidenav fixed visibleNav">
     <li><div class="user-view">
@@ -51,6 +50,120 @@
 
 {{outlet}}
 
+<!-- MODALS -->
+{{#jquery-wrapper query='.modal' method='modal' options=modalOptions}}
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>{{if selectedSubscriber.isNew 'Nuevo' 'Editar'}} Subscriptor</h4>
+      <div class="row">
+        <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedSubscriber.name}}
+                <label>Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedSubscriber.last_name}}
+                <label>Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="number" type="text" class="validate" value=selectedSubscriber.phone}}
+                <label>Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="email" type="text" class="validate" value=selectedSubscriber.mail}}
+                <label>Email</label>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer blue darken-2">
+      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedSubscriber 'selectedSubscriber'}}>Guardar</a>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>{{if selectedStudent.isNew 'Nuevo' 'Editar'}} Alumno</h4>
+      <div class="row">
+        <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedStudent.name}}
+                <label>Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedStudent.last_name}}
+                <label>Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="number" type="text" class="validate" value=selectedStudent.phone}}
+                <label>Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="email" type="text" class="validate" value=selectedStudent.mail}}
+                <label>Email</label>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer blue darken-2">
+      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedStudent 'selectedStudent'}}>Guardar</a>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>{{if selectedTeacher.isNew 'Nuevo' 'Editar'}} Profesor</h4>
+      <div class="row">
+        <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedTeacher.name}}
+                <label>Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedTeacher.last_name}}
+                <label>Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="number" type="text" class="validate" value=selectedTeacher.phone}}
+                <label>Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="email" type="text" class="validate" value=selectedTeacher.mail}}
+                <label>Email</label>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer blue darken-2">
+      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedTeacher 'selectedTeacher'}}>Guardar</a>
+    </div>
+  </div>
+
+{{/jquery-wrapper}}
+
+<!-- FOOTER -->
+
 <footer class="page-footer footerBottom blue darken-1">
   <div class="container">
     <div class="row">
@@ -60,25 +173,28 @@
       <div class="col s6">
 
         {{#if (eq routeName 'auth.dashboard')}}
-          <button class="waves-effect waves-light btn-flat white-text">
+          <button class="waves-effect waves-light btn-flat white-text" {{action 'createTeacher'}}>
             <i class="material-icons left">add</i>Nuevo Profesor
           </button>
-          <button class="waves-effect waves-light btn-flat white-text">
+          <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
             <i class="material-icons left">add</i>Nuevo Alumno
           </button>
-          <button class="waves-effect waves-light btn-flat white-text" {{action 'newRecord' 'subscriber'}}>
+          {{#link-to 'auth.contracts.new' class="waves-effect waves-light btn-flat white-text"}}
+            <i class="material-icons left">add</i>Nuevo Contrato
+          {{/link-to}}
+          <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
             <i class="material-icons left">add</i>Nuevo Subscriptor
           </button>
           {{else}}
             {{#if (eq routeName 'auth.students.index')}}
-              {{#link-to 'auth.students.new' class="waves-effect waves-light btn-flat white-text"}}
+              <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
                 <i class="material-icons left">add</i>Nuevo Alumno
-              {{/link-to}}
+              </button>
             {{else}}
                 {{#if (eq routeName 'auth.teachers.index')}}
-                  {{#link-to 'auth.teachers.new' class="waves-effect waves-light btn-flat white-text"}}
+                  <button class="waves-effect waves-light btn-flat white-text" {{action 'createTeacher'}}>
                     <i class="material-icons left">add</i>Nuevo Profesor
-                  {{/link-to}}
+                  </button>
                 {{else}}
                     {{#if (eq routeName 'auth.contracts.index')}}
                       {{#link-to 'auth.contracts.new' class="waves-effect waves-light btn-flat white-text"}}
@@ -86,9 +202,9 @@
                       {{/link-to}}
                     {{else}}
                         {{#if (eq routeName 'auth.subscribers.index')}}
-                          {{#link-to 'auth.subscribers.new' class="waves-effect waves-light btn-flat white-text"}}
+                          <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
                             <i class="material-icons left">add</i>Nuevo Subscriptor
-                          {{/link-to}}
+                          </button>
                         {{/if}}
                     {{/if}}
                 {{/if}}
@@ -101,7 +217,7 @@
   <div class="footer-copyright">
     <div class="container">
       © 2018 English Academy
-      <a class="grey-text text-lighten-4 right" href="https://github.com/Lex3960/LDAW_ProyectoFinal_WebApp">Developed by Alex Reséndiz</a>
+      <a class="grey-text text-lighten-4 right" href="https://github.com/Lex3960/LDAW_ProyectoFinal_WebApp" target="_blank">Developed by Álex Reséndiz</a>
     </div>
   </div>
 </footer>

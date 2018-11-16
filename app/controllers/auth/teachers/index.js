@@ -27,16 +27,16 @@ export default Controller.extend({
   customMessages: {
     searchLabel: 'Búqueda rápida',
     tableSummary: "Mostrando %@ - %@ de %@",
-    noDataToShow: "Aún no se registran suscriptores."
+    noDataToShow: "Aún no se registran profesores."
   },
 
   actions: {
-      deleteSubscriber(subscriber){
-        this.get('parent').send('deleteRecord', subscriber);
+      deleteTeacher(teacher){
+        this.get('parent').send('deleteRecord', teacher);
       },
 
-      editSubscriber(subscriber) {
-        this.get('parent').send('editSubscriber', subscriber);
+      editTeacher(teacher) {
+        this.get('parent').send('editTeacher', teacher);
       },
   }
 });

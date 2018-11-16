@@ -6,6 +6,7 @@ export default Controller.extend({
   columns: [ {
       propertyName: "name",
       title: "Nombre",
+      sortedBy: "name",
       filterPlaceholder: 'Búsqueda'
     }, {
       propertyName: "last_name",
@@ -27,16 +28,16 @@ export default Controller.extend({
   customMessages: {
     searchLabel: 'Búqueda rápida',
     tableSummary: "Mostrando %@ - %@ de %@",
-    noDataToShow: "Aún no se registran suscriptores."
+    noDataToShow: "Aún no se registran alumnos."
   },
 
   actions: {
-      deleteSubscriber(subscriber){
-        this.get('parent').send('deleteRecord', subscriber);
+      deleteStudent(student){
+        this.get('parent').send('deleteRecord', student);
       },
 
-      editSubscriber(subscriber) {
-        this.get('parent').send('editSubscriber', subscriber);
+      editStudent(student) {
+        this.get('parent').send('editStudent', student);
       },
   }
 });
