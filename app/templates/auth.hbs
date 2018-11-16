@@ -200,11 +200,20 @@
                       {{#link-to 'auth.contracts.new' class="waves-effect waves-light btn-flat white-text"}}
                         <i class="material-icons left">add</i>Nuevo Contrato
                       {{/link-to}}
-                    {{else}}
-                        {{#if (eq routeName 'auth.subscribers.index')}}
+                      {{else}}
+                        {{#if (eq routeName 'auth.contracts.new')}}
+                          <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
+                            <i class="material-icons left">add</i>Nuevo Alumno
+                          </button>
                           <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
                             <i class="material-icons left">add</i>Nuevo Subscriptor
                           </button>
+                        {{else}}
+                            {{#if (eq routeName 'auth.subscribers.index')}}
+                              <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
+                                <i class="material-icons left">add</i>Nuevo Subscriptor
+                              </button>
+                            {{/if}}
                         {{/if}}
                     {{/if}}
                 {{/if}}

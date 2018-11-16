@@ -1,15 +1,13 @@
+import Ember from 'ember';
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   parent: Ember.inject.controller('auth'),
 
   columns: [ {
-      propertyName: "name",
-      title: "Nombre",
-      filterPlaceholder: 'Búsqueda'
-    }, {
-      propertyName: "last_name",
-      title: "Apellidos",
+      propertyName: "fullName",
+      title: "Nombre Completo",
       filterPlaceholder: 'Búsqueda'
     }, {
       propertyName: "phone",
@@ -24,11 +22,13 @@ export default Controller.extend({
       template: "cells/table-actions"
     }
   ],
-  customMessages: {
-    searchLabel: 'Búqueda rápida',
-    tableSummary: "Mostrando %@ - %@ de %@",
-    noDataToShow: "Aún no se registran suscriptores."
-  },
+  customMessages: computed(function(){
+    return {
+      searchLabel: 'Búqueda rápida',
+      tableSummary: "Mostrando %@ - %@ de %@",
+      noDataToShow: "Aún no se registran alumnos."
+    }
+  }),
 
   actions: {
       deleteSubscriber(subscriber){

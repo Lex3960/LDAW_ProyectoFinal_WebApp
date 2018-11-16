@@ -1,3 +1,28 @@
+<style type="text/css">
+  .md-table-header {
+    display: none;
+  }
+  .clearFilters {
+    background-color: #EF5350;
+  }
+  .pagination li.active {
+    background-color: #1976d2;
+  }
+  .ember-text-field{
+    color: black;
+  }
+  .table-header:hover {
+    cursor: pointer;
+  }
+  .table-header-no-sorting:hover {
+    cursor: auto;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bdbdbd ;
+    opacity: 1; /* Firefox */
+  }
+</style>
+
 <nav class="red lighten-1">
   <div class="row">
     <div class="col s12">
@@ -13,38 +38,20 @@
 
 <div class="row">
   <div class="col s10 offset-s1">
-    <h4> Contratos </h4>
+    <blockquote> <h4> Contratos </h4> </blockquote>
   </div>
 </div>
 
 <div class="row">
   <div class="container col s10 offset-s1">
-    <table>
-        <thead>
-          <tr>
-              <th>Titular</th>
-              <th>Fecha de Inicio</th>
-              <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model as |contract|}}
-            {{#unless  contract.isNew}}
-              <tr>
-                <td>{{contract.subscriber.name}}</td>
-                <td>{{contract.contract_signature_date}}</td>
-                <td>
-                  {{#link-to 'auth.subscribers.edit' subscriber.id class="btn-floating blue darken-2"}}<i class="material-icons">edit</i>{{/link-to}}
-                  <a class="btn-floating red darken-2"><i class="material-icons" {{action 'delete' subscriber}}>delete</i></a>
-                </td>
-              </tr>
-            {{/unless}}
-          {{else}}
-            <tr>
-              <td colspan="3">No hay contratos registrados.</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    {{models-table
+      data=model
+      columns=columns
+      showColumnsDropdown=false
+      customMessages=customMessages
+      filteringIgnoreCase=true
+      useNumericPagination=true
+      pageSize=5
+    }}
   </div>
 </div>
