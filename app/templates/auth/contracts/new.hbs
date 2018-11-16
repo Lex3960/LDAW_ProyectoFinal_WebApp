@@ -11,3 +11,33 @@
     </div>
   </div>
 </nav>
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <h4> Nuevo Contrato </h4>
+  </div>
+</div>
+
+<div class="row">
+  <form class="col s10 offset-s1" {{action 'saveContract' model on='submit'}}>
+      <div class="row">
+        <div class="input-field col s12">
+          {{#power-select
+            options=model
+            placeholder='Subscriptores'
+            onchange=(action 'foo')
+            as |subscriber|}}
+            {{subscriber.name}}
+          {{/power-select}}
+        </div>
+      </div>
+      <div class="row">
+        {{#link-to 'auth.contracts' class="waves-effect waves-light btn red left"}}
+          <i class="material-icons right">cancel</i> Cancelar
+        {{/link-to}}
+        <button type="submit" class="waves-effect waves-light btn blue darken-1 right">
+          <i class="material-icons right">save</i> Guardar
+        </button>
+      </div>
+  </form>
+</div>

@@ -38,6 +38,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-material-design-icons-shim": "^0.1.12",
+    "ember-material-table": "^2.13.4",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "^7.8.0",
     "ember-power-select": "^2.0.9",

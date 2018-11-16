@@ -22,19 +22,28 @@
     <table>
         <thead>
           <tr>
-              <th>Nombre Completo</th>
-              <th>Teléfono</th>
-              <th>Correo Electrónico</th>
+              <th>Titular</th>
+              <th>Fecha de Inicio</th>
               <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-            <td>Hello</td>
-          </tr>
+          {{#each model as |contract|}}
+            {{#unless  contract.isNew}}
+              <tr>
+                <td>{{contract.subscriber.name}}</td>
+                <td>{{contract.contract_signature_date}}</td>
+                <td>
+                  {{#link-to 'auth.subscribers.edit' subscriber.id class="btn-floating blue darken-2"}}<i class="material-icons">edit</i>{{/link-to}}
+                  <a class="btn-floating red darken-2"><i class="material-icons" {{action 'delete' subscriber}}>delete</i></a>
+                </td>
+              </tr>
+            {{/unless}}
+          {{else}}
+            <tr>
+              <td colspan="3">No hay contratos registrados.</td>
+            </tr>
+          {{/each}}
         </tbody>
       </table>
   </div>

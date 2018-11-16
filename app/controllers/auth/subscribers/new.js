@@ -9,7 +9,9 @@ export default Controller.extend({
           'Éxito',
           'Subscriptor Guardado!',
           'success'
-        )
+        ).then(()=>{
+          this.transitionToRoute('auth.subscribers');
+        })
       })
     }
   }
