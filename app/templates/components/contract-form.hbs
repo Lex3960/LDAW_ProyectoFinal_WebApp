@@ -1,0 +1,86 @@
+<style>
+  i.icon-red {
+      color: red;
+  }
+  .ember-power-select-option, .ember-power-select-multiple-option {
+   margin-right:1em;
+   line-height:37.5px;
+   height: 37.5px;
+  }
+  .ember-power-select-option span, .ember-power-select-multiple-option span{
+    display:inline-block;
+    line-height:37.5px;
+    height: 37.5px;
+  }
+</style>
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <blockquote> <h4> {{if model.isNew 'Nuevo' 'Editar'}} Contrato </h4> </blockquote>
+  </div>
+</div>
+
+<div class="row">
+  <form class="col s10 offset-s1">
+      <div class="row">
+        <div class="col s12">
+          <label>Subscriptor</label>
+          {{#power-select
+            renderInPlace=true
+            selected=model.subscriber
+            options=subscribers
+            searchField='fullName'
+            onchange=(action (mut model.subscriber))
+            as |subscriber|}}
+            {{subscriber.fullName}}
+          {{/power-select}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <label>Agregar Alumnos</label>
+          {{#power-select-multiple
+            renderInPlace=true
+            selected=selectedStudents
+            options=students
+            searchField='fullName'
+            onchange=(action (mut selectedStudents))
+            as |student|}}
+            {{#if (array-contains currentContracts student.id property='student.id')}}
+              {{student.fullName}} <span class="new badge red" data-badge-caption="Ya agregado."></span>
+            {{else}}
+              {{student.fullName}}
+            {{/if}}
+          {{/power-select-multiple}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <ul class="collection with-header">
+            <li class="collection-header"><h6>Alumnos en el Contrato</h6></li>
+              {{#each currentContracts as |studentContract|}}
+                <li class="collection-item">
+                <div>
+                  {{studentContract.student.fullName}}
+                  <a class="secondary-content" {{action 'removeStudent' studentContract}}>
+                    <i class="material-icons icon-red">delete</i></a>
+                </div>
+              </li>
+              {{else}}
+                <li class="collection-item">No se han agregado alumnos al contrato.</li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+
+      <div class="row">
+        {{#link-to 'auth.contracts' class="waves-effect waves-light btn red left"}}
+          <i class="material-icons right">cancel</i> Cancelar
+        {{/link-to}}
+        <button type="submit" class="waves-effect waves-light btn blue darken-1 right" {{action 'saveContract'}}>
+          <i class="material-icons right">save</i> Guardar
+        </button>
+      </div>
+  </form>
+</div>

@@ -11,3 +11,12 @@
     </div>
   </div>
 </nav>
+
+{{contract-form
+  model=model.contract
+  students=model.students
+  subscribers=model.subscribers
+  currentContracts=model.studentContracts
+  selectedStudents=selectedStudents
+  saveContract=(action 'saveContract' model.contract selectedStudents)
+}}

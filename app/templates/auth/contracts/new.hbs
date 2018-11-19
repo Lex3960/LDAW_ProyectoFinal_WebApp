@@ -12,46 +12,10 @@
   </div>
 </nav>
 
-<div class="row">
-  <div class="col s10 offset-s1">
-    <h4> Nuevo Contrato </h4>
-  </div>
-</div>
-
-<div class="row">
-  <form class="col s10 offset-s1" {{action 'saveContract' model on='submit'}}>
-      <div class="row">
-        <div class="col s12">
-          <label>Subscriptor</label>
-          {{#power-select
-            renderInPlace=true
-            selected=model.contract.subscriber
-            options=model.subscribers
-            onchange=(action (mut model.contract.subscriber)) as |subscriber|}}
-            {{subscriber.name}} {{subscriber.last_name}}
-          {{/power-select}}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <label>Alumnos</label>
-          {{#power-select-multiple
-            renderInPlace=true
-            options=model.students
-            selected=selectedStudents
-            onchange=(action (mut selectedStudents))
-            as |student|}}
-            {{student.name}} {{student.last_name}}
-          {{/power-select-multiple}}
-        </div>
-      </div>
-      <div class="row">
-        {{#link-to 'auth.contracts' class="waves-effect waves-light btn red left"}}
-          <i class="material-icons right">cancel</i> Cancelar
-        {{/link-to}}
-        <button type="submit" class="waves-effect waves-light btn blue darken-1 right" {{action 'saveContract' model.contract selectedStudents}}>
-          <i class="material-icons right">save</i> Guardar
-        </button>
-      </div>
-  </form>
-</div>
+{{contract-form
+  model=model.contract
+  students=model.students
+  subscribers=model.subscribers
+  selectedStudents=selectedStudents
+  saveContract=(action 'saveContract' model.contract selectedStudents)
+}}

@@ -5,7 +5,8 @@ import { computed } from '@ember/object';
 export default Controller.extend({
   parent: Ember.inject.controller('auth'),
 
-  columns: [ {
+  columns: computed(function(){
+    return [{
       propertyName: "fullName",
       title: "Nombre Completo",
       filterPlaceholder: 'Búsqueda'
@@ -20,13 +21,13 @@ export default Controller.extend({
     }, {
       title: "Acciones",
       template: "cells/table-actions"
-    }
-  ],
+    }]
+  }),
   customMessages: computed(function(){
     return {
       searchLabel: 'Búqueda rápida',
       tableSummary: "Mostrando %@ - %@ de %@",
-      noDataToShow: "Aún no se registran alumnos."
+      noDataToShow: "Aún no se registran profesores."
     }
   }),
 

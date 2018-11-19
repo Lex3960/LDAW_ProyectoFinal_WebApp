@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from "@ember/service";
 import { alias } from "@ember/object/computed";
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   routing: service('-routing'),
@@ -10,9 +11,11 @@ export default Controller.extend({
   selectedStudent: null,
   selectedTeacher: null,
 
-  modalOptions: {
-    dismissible: false
-  },
+  modalOptions: computed(function(){
+    return {
+      dismissible: false
+    }
+  }),
 
   actions: {
     createStudent() {

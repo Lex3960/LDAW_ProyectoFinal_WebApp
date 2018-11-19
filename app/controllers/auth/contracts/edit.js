@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default Controller.extend({
   selectedStudents: null,
-
+  
   actions: {
     saveContract(contract, students){
       contract.set('contract_signature_date', moment().unix());
@@ -16,7 +16,7 @@ export default Controller.extend({
               student: student,
               contract: contract
             }).save().then(()=>{
-              return student.save();
+              return student.save()
             })
           })
         ).then(()=>{
