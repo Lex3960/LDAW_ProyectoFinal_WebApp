@@ -1,1 +1,112 @@
-{{outlet}}
+<style>
+  i.icon-red {
+      color: red;
+  }
+  .ember-power-select-option, .ember-power-select-multiple-option {
+   margin-right:1em;
+   line-height:37.5px;
+   height: 37.5px;
+  }
+  .ember-power-select-option span, .ember-power-select-multiple-option span{
+    display:inline-block;
+    line-height:37.5px;
+    height: 37.5px;
+  }
+
+  .fixed-collection {
+    height: 50vh;
+    overflow-y: scroll;
+  }
+
+  .tertiary-content {
+    position: absolute;
+    top: 16px;
+    right: 64px;
+  }
+</style>
+<nav class="red lighten-1">
+  <div class="row">
+    <div class="col s12">
+      <div class="nav-wrapper">
+        <div class="col s12">
+         {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
+         {{#link-to 'auth.levels' class="breadcrumb"}} Niveles {{/link-to}}
+         {{#link-to 'auth.levels.detail' model.lesson.level.id class="breadcrumb"}} {{model.lesson.level.name}} {{/link-to}}
+         {{#link-to 'auth.levels.activities' model.lesson.id class="breadcrumb"}} {{model.lesson.name}} {{/link-to}}
+       </div>
+       </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <blockquote> <h4> {{model.lesson.level.name}}: <i>{{model.lesson.name}}</i></h4> </blockquote>
+  </div>
+</div>
+
+<div class="row">
+  <form class="col s10 offset-s1">
+      <div class="row">
+        <div class="col s7">
+          <div class="row">
+            <div class="col s12">
+              <ul class="collection fixed-collection with-header">
+                <li class="collection-header"><h5>Actividades en la Lección</h5></li>
+                  {{#each model.activities as |activity|}}
+                    <li class="collection-item avatar">
+                      <img src="/media/student.png" alt="" class="circle">
+                      <span class="title">{{activity.activity_type.name}}</span>
+                      <p>{{activity.lesson.level.name}}</p>
+                      <a class="secondary-content btn-floating right red darken-2" {{action 'deleteActivity' activity}} ><i class="material-icons">delete</i></a>
+                    </li>
+                  {{else}}
+                    <li class="collection-item">No se han agregado actividades a la Lección.</li>
+                  {{/each}}
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col s5">
+          <div class="row">
+            <div class="col s12">
+              <ul class="collection with-header">
+                <li class="collection-header"><h6>Tipos de Actividad Permitidos</h6></li>
+                {{#each model.types as |lessonType|}}
+                  <div>
+                    <li class="collection-item">{{lessonType.activity_type.name}}</li>
+                  </div>
+                {{else}}
+                  <li class="collection-item">No se registran tipos.</li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <h5>Crear Actividad</h5>
+              <label>Tipo de Actividad</label>
+              {{#power-select
+                renderInPlace=true
+                selected=selectedType
+                options=model.types
+                onchange=(action (mut selectedType))
+                as |lessonType|}}
+                {{lessonType.activity_type.name}}
+              {{/power-select}}
+              <br>
+              <button disabled={{unless selectedType true false}} type="submit" class="waves-effect waves-light btn blue darken-1 right" {{action 'saveActivity' model.lesson selectedType.activity_type}}>
+                <i class="material-icons right">save</i> Guardar Actividad
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {{#link-to 'auth.levels.detail' model.lesson.level.id class="waves-effect waves-light btn red darken-2 left"}}
+          <i class="material-icons left">arrow_back</i> Aceptar
+        {{/link-to}}
+      </div>
+  </form>
+</div>

@@ -39,7 +39,7 @@
         <div class="col s12">
          {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
          {{#link-to 'auth.levels' class="breadcrumb"}} Niveles {{/link-to}}
-         {{#link-to 'auth.levels.detail' model.level.id class="breadcrumb"}} Lecciones {{/link-to}}
+         {{#link-to 'auth.levels.detail' model.level.id class="breadcrumb"}} {{model.level.name}} {{/link-to}}
        </div>
        </div>
     </div>
