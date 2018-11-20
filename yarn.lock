@@ -2890,9 +2890,9 @@ ember-material-design-icons-shim@^0.1.12:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-material-table@^2.13.4:
+"ember-material-table@https://github.com/Lex3960/ember-material-table/tarball/master":
   version "2.13.4"
-  resolved "https://registry.yarnpkg.com/ember-material-table/-/ember-material-table-2.13.4.tgz#c8a5d15dfb68910518454129efae0a6725fb0fa6"
+  resolved "https://github.com/Lex3960/ember-material-table/tarball/master#ae5479ab051582d823b0480f269cebcf4047d08a"
   dependencies:
     ember-cli-babel "^6.0.0"
     ember-cli-htmlbars "^1.1.1"

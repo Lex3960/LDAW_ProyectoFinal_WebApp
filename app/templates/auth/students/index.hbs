@@ -17,9 +17,18 @@
   .table-header-no-sorting:hover {
     cursor: auto;
   }
+  .expand-row {
+    /* display: list-item; */
+  }
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #bdbdbd ;
     opacity: 1; /* Firefox */
+  }
+  .expand_less::after{
+    content: "expand_less";
+  }
+  .expand_more::after{
+    content: "expand_more";
   }
 </style>
 
@@ -49,8 +58,11 @@
       columns=columns
       showColumnsDropdown=false
       customMessages=customMessages
+      customIcons=customIcons
       filteringIgnoreCase=true
       useNumericPagination=true
+      expandedRowTemplate='row-student'
+      multipleExpand=false
       pageSize=5
       delete='deleteStudent'
       edit='editStudent'

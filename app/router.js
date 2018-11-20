@@ -20,7 +20,6 @@ Router.map(function() {
       this.route('detail', {path: '/:id'});
     });
     this.route('teachers', function() {});
-
     this.route('substudents', function() {});
   });
 });

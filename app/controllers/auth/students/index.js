@@ -7,6 +7,9 @@ export default Controller.extend({
 
   columns: computed(function(){
     return [ {
+      template: "components/models-table/expand-row-cell",
+      mayBeHidden: false
+      }, {
         propertyName: "fullName",
         title: "Nombre Completo",
         sortedBy: "name",
@@ -30,6 +33,12 @@ export default Controller.extend({
       searchLabel: 'Búqueda rápida',
       tableSummary: "Mostrando %@ - %@ de %@",
       noDataToShow: "Aún no se registran alumnos."
+    }
+  }),
+  customIcons: computed(function(){
+    return {
+      'expand-row': 'material-icons expand_more',
+      'collapse-row': 'material-icons expand_less',
     }
   }),
 

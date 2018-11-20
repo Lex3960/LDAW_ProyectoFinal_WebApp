@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  activity_type_id: DS.attr('number'),
-  lesson_id: DS.attr('number')
+  activity_type: DS.belongsTo('activity-type'),
+  reservations: DS.hasMany('reservation'),
+  lesson: DS.belongsTo('lesson')
 });

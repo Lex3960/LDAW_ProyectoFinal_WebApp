@@ -2,7 +2,8 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   classroom: DS.attr('string'),
-  school_id: DS.attr('number'),
+  school: DS.belongsTo('school'),
   start_date: DS.attr('string'),
-  teacher_id: DS.attr('number')
+  teacher: DS.belongsTo('teacher'),
+  reservations: DS.hasMany('reservation')
 });

@@ -8,5 +8,6 @@ export default DS.Model.extend({
     return `${this.get('name')} ${this.get('last_name')}`;
   }),
   phone: DS.attr('string'),
-  mail: DS.attr('string')
+  mail: DS.attr('string'),
+  lectures: DS.hasMany('lecture')
 });

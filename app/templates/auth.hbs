@@ -25,6 +25,7 @@
       <a><span class="white-text name">Admin 1</span></a>
       <a><span class="white-text email">admin_academy@gmail.com</span></a>
     </div></li>
+    <li><a class="subheader">Administrativo</a></li>
     <li class="{{if (eq routeName 'auth.dashboard') 'active'}}">
       {{#link-to 'auth.dashboard'}}<i class="material-icons">home</i>Dashboard{{/link-to}}
     </li>
@@ -173,44 +174,44 @@
       <div class="col s6">
 
         {{#if (eq routeName 'auth.dashboard')}}
-          <button class="waves-effect waves-light btn-flat white-text" {{action 'createTeacher'}}>
+          <button class="waves-effect waves-red btn-flat white-text" {{action 'createTeacher'}}>
             <i class="material-icons left">add</i>Nuevo Profesor
           </button>
-          <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
+          <button class="waves-effect waves-red btn-flat white-text" {{action 'createStudent'}}>
             <i class="material-icons left">add</i>Nuevo Alumno
           </button>
-          {{#link-to 'auth.contracts.new' class="waves-effect waves-light btn-flat white-text"}}
+          {{#link-to 'auth.contracts.new' class="waves-effect waves-red btn-flat white-text"}}
             <i class="material-icons left">add</i>Nuevo Contrato
           {{/link-to}}
-          <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
+          <button class="waves-effect waves-red btn-flat white-text" {{action 'createSubscriber'}}>
             <i class="material-icons left">add</i>Nuevo Subscriptor
           </button>
           {{else}}
             {{#if (eq routeName 'auth.students.index')}}
-              <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
+              <button class="waves-effect waves-red btn-flat white-text" {{action 'createStudent'}}>
                 <i class="material-icons left">add</i>Nuevo Alumno
               </button>
             {{else}}
                 {{#if (eq routeName 'auth.teachers.index')}}
-                  <button class="waves-effect waves-light btn-flat white-text" {{action 'createTeacher'}}>
+                  <button class="waves-effect waves-red btn-flat white-text" {{action 'createTeacher'}}>
                     <i class="material-icons left">add</i>Nuevo Profesor
                   </button>
                 {{else}}
                     {{#if (eq routeName 'auth.contracts.index')}}
-                      {{#link-to 'auth.contracts.new' class="waves-effect waves-light btn-flat white-text"}}
+                      {{#link-to 'auth.contracts.new' class="waves-effect waves-red btn-flat white-text"}}
                         <i class="material-icons left">add</i>Nuevo Contrato
                       {{/link-to}}
                       {{else}}
                         {{#if (eq routeName 'auth.contracts.new')}}
-                          <button class="waves-effect waves-light btn-flat white-text" {{action 'createStudent'}}>
+                          <button class="waves-effect waves-red btn-flat white-text" {{action 'createStudent'}}>
                             <i class="material-icons left">add</i>Nuevo Alumno
                           </button>
-                          <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
+                          <button class="waves-effect waves-red btn-flat white-text" {{action 'createSubscriber'}}>
                             <i class="material-icons left">add</i>Nuevo Subscriptor
                           </button>
                         {{else}}
                             {{#if (eq routeName 'auth.subscribers.index')}}
-                              <button class="waves-effect waves-light btn-flat white-text" {{action 'createSubscriber'}}>
+                              <button class="waves-effect waves-red btn-flat white-text" {{action 'createSubscriber'}}>
                                 <i class="material-icons left">add</i>Nuevo Subscriptor
                               </button>
                             {{/if}}
