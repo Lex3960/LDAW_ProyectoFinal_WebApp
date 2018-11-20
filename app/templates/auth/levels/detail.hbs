@@ -1,0 +1,71 @@
+<style type="text/css">
+  .md-table-header {
+    display: none;
+  }
+  .clearFilters {
+    background-color: #EF5350;
+  }
+  .pagination li.active {
+    background-color: #1976d2;
+  }
+  .ember-text-field{
+    color: black;
+  }
+  .table-header:hover {
+    cursor: pointer;
+  }
+  .table-header-no-sorting:hover {
+    cursor: auto;
+  }
+  .expand-row {
+    /* display: list-item; */
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bdbdbd ;
+    opacity: 1; /* Firefox */
+  }
+  .expand_less::after{
+    content: "expand_less";
+  }
+  .expand_more::after{
+    content: "expand_more";
+  }
+</style>
+
+<nav class="red lighten-1">
+  <div class="row">
+    <div class="col s12">
+      <div class="nav-wrapper">
+        <div class="col s12">
+         {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
+         {{#link-to 'auth.levels' class="breadcrumb"}} Niveles {{/link-to}}
+         {{#link-to 'auth.levels.detail' model.level.id class="breadcrumb"}} Lecciones {{/link-to}}
+       </div>
+       </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <blockquote> <h4> {{model.level.name}}: <i>Lecciones</i> </h4> </blockquote>
+  </div>
+</div>
+
+<div class="row">
+  <div class="container col s10 offset-s1">
+    {{models-table
+      data=model.lessons
+      columns=columns
+      showColumnsDropdown=false
+      customMessages=customMessages
+      customIcons=customIcons
+      filteringIgnoreCase=true
+      useNumericPagination=true
+      expandedRowTemplate='row-lesson'
+      multipleExpand=false
+      pageSize=5
+      edit='editLesson'
+    }}
+  </div>
+</div>

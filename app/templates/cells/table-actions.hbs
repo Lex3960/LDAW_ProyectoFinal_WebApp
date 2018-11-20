@@ -2,7 +2,9 @@
   <div class="col s6">
     <a class="btn-floating blue darken-2"><i class="material-icons" {{action 'sendAction' 'edit' record}}>edit</i></a>
   </div>
-  <div class="col s6">
-    <a class="btn-floating red darken-2"><i class="material-icons" {{action 'sendAction' 'delete' record}}>delete</i></a>
-  </div>
+  {{#if delete}}
+    <div class="col s6">
+      <a class="btn-floating red darken-2"><i class="material-icons" {{action 'sendAction' 'delete' record}}>delete</i></a>
+    </div>
+  {{/if}}
 </div>

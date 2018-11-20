@@ -25,9 +25,15 @@
       <a><span class="white-text name">Admin 1</span></a>
       <a><span class="white-text email">admin_academy@gmail.com</span></a>
     </div></li>
-    <li><a class="subheader">Administrativo</a></li>
     <li class="{{if (eq routeName 'auth.dashboard') 'active'}}">
-      {{#link-to 'auth.dashboard'}}<i class="material-icons">home</i>Dashboard{{/link-to}}
+      {{#link-to 'auth.dashboard'}}<i class="material-icons">dashboard</i>Dashboard{{/link-to}}
+    </li>
+    <li><a class="subheader">Administrativo</a></li>
+    <li class="{{if (eq routeName 'auth.contracts.index') 'active'}}">
+      {{#link-to 'auth.contracts'}}<i class="material-icons">assignment</i>Contratos{{/link-to}}
+    </li>
+    <li class="{{if (eq routeName 'auth.subscribers.index') 'active'}}">
+      {{#link-to 'auth.subscribers'}}<i class="material-icons">supervisor_account</i>Subscriptores{{/link-to}}
     </li>
     <li class="{{if (eq routeName 'auth.students.index') 'active'}}">
       {{#link-to 'auth.students'}}<i class="material-icons">people</i>Alumnos{{/link-to}}
@@ -35,14 +41,16 @@
     <li class="{{if (eq routeName 'auth.teachers.index') 'active'}}">
       {{#link-to 'auth.teachers'}}<i class="material-icons">school</i>Profesores{{/link-to}}
     </li>
-    <li class="{{if (eq routeName 'auth.subscribers.index') 'active'}}">
-      {{#link-to 'auth.subscribers'}}<i class="material-icons">supervisor_account</i>Subscriptores{{/link-to}}
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Académico</a></li>
+    <li class="{{if (eq routeName 'auth.classes.index') 'active'}}">
+      {{#link-to 'auth.classes'}}<i class="material-icons">class</i>Clases{{/link-to}}
     </li>
-    <li class="{{if (eq routeName 'auth.contracts.index') 'active'}}">
-      {{#link-to 'auth.contracts'}}<i class="material-icons">assignment</i>Contratos{{/link-to}}
+    <li class="{{if (eq routeName 'auth.levels  .index') 'active'}}">
+      {{#link-to 'auth.levels'}}<i class="material-icons">school</i>Niveles{{/link-to}}
     </li>
     <li><div class="divider"></div></li>
-    <li><a class="subheader">Account</a></li>
+    <li><a class="subheader">Cuenta</a></li>
     <li>
       {{#link-to 'login' class="waves-effect" href="#!"}}Sign Out{{/link-to}}
     </li>

@@ -3,25 +3,14 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  parent: Ember.inject.controller('auth'),
-
   columns: computed(function(){
     return [ {
         title: "Detalle",
         template: "components/models-table/expand-row-cell",
         mayBeHidden: false
       }, {
-        propertyName: "fullName",
-        title: "Nombre Completo",
-        sortedBy: "name",
-        filterPlaceholder: 'Búsqueda'
-      }, {
-        propertyName: "phone",
-        title: "Teléfono",
-        filterPlaceholder: 'Búsqueda'
-      }, {
-        propertyName: "email",
-        title: "Email",
+        propertyName: "name",
+        title: "Título de la Lección",
         filterPlaceholder: 'Búsqueda'
       }, {
         title: "Acciones",
@@ -44,12 +33,8 @@ export default Controller.extend({
   }),
 
   actions: {
-      deleteStudent(student){
-        this.get('parent').send('deleteRecord', student);
-      },
-
-      editStudent(student) {
-        this.get('parent').send('editStudent', student);
+      editLesson(lesson) {
+        this.transitionToRoute('auth.levels.activities', lesson.id);
       },
   }
 });

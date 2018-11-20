@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('signup');
   this.route('auth', function() {
     this.route('dashboard');
-    this.route('subscribers', function() {});
+    this.route('subscribers', function(){});
     this.route('contracts', function() {
       this.route('edit', {path: '/:id'});
       this.route('new');
@@ -19,8 +19,15 @@ Router.map(function() {
     this.route('students', function() {
       this.route('detail', {path: '/:id'});
     });
-    this.route('teachers', function() {});
-    this.route('substudents', function() {});
+    this.route('teachers', function(){});
+    this.route('substudents');
+    this.route('classes', function() {
+      this.route('detail');
+    });
+    this.route('levels', function() {
+      this.route('detail', {path: '/lessons/:id'});
+      this.route('activities', {path: '/activities/:id'});
+    });
   });
 });
 

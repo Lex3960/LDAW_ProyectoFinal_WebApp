@@ -1,0 +1,18 @@
+<div class="col s6">
+  <h5 class="header">{{course.name}}</h5>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src="/media/course.jpg">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <p>This course prepares students for success in English Composition through active reading, critical thinking, and the writing process.</p>
+      </div>
+      <div class="card-action red lighten-1">
+        {{#link-to 'auth.levels.detail' course.id class="white-text"}}
+          Details
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+</div>
