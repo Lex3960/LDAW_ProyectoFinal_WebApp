@@ -169,31 +169,40 @@
     </div>
   </div>
 
-  <div id="modal4" class="modal">
+  <div id="modal4" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>{{if selectedLecture.isNew 'Nueva' 'Editar'}} Clase</h4>
       <div class="row">
         <form class="col s12">
             <div class="row">
               <div class="input-field col s6">
-                {{input type="text" class="validate active" value=selectedTeacher.name}}
-                <label>Nombre</label>
-              </div>
-              <div class="input-field col s6">
-                {{input type="text" class="validate active" value=selectedTeacher.last_name}}
-                <label>Apellidos</label>
+                {{input type="text" class="validate active" value=selectedLecture.classroom}}
+                <label>Espacio</label>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
-                {{input type="number" type="text" class="validate" value=selectedTeacher.phone}}
-                <label>Teléfono</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                {{input type="email" type="text" class="validate" value=selectedTeacher.mail}}
-                <label>Email</label>
+              <div class="col s10 offset-s1">
+                {{#basic-dropdown
+                  renderInPlace=true
+                  as |dropdown|}}
+                  <input type="text"
+                    data-ebd-id="{{dropdown.uniqueId}}-trigger"
+                    class="datepicker-demo-input"
+                    onclick={{dropdown.actions.toggle}}
+                    value={{if selected (moment-format selected 'DD-MM-YYYY')}}
+                    readonly>
+                  {{#dropdown.content class="datepicker-demo-dropdown"}}
+                    {{#power-calendar class="demo-calendar-small"
+
+                      center=center
+                      onCenterChange=(action (mut center) value="date")
+                      selected=selected
+                      onSelect=(action (mut selected) value="date") as |calendar|}}
+                      {{calendar.nav}}
+                      {{calendar.days}}
+                    {{/power-calendar}}
+                  {{/dropdown.content}}
+                {{/basic-dropdown}}
               </div>
             </div>
         </form>
@@ -201,7 +210,7 @@
     </div>
     <div class="modal-footer blue darken-2">
       <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
-      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedTeacher 'selectedTeacher'}}>Guardar</a>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedLecture 'selectedLecture'}}>Guardar</a>
     </div>
   </div>
 
