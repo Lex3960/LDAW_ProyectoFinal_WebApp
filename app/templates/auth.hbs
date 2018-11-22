@@ -181,7 +181,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col s10 offset-s1">
+              <div class="col s8">
                 {{#basic-dropdown
                   renderInPlace=true
                   as |dropdown|}}
@@ -203,6 +203,13 @@
                     {{/power-calendar}}
                   {{/dropdown.content}}
                 {{/basic-dropdown}}
+              </div>
+              <div class="col s4">
+                {{time-picker
+                  selectedTime=timeSelected
+                  onchange=(action (mut timeSelected) selectedTime)
+                  increment=5
+                }}
               </div>
             </div>
         </form>
