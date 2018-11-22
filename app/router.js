@@ -21,12 +21,15 @@ Router.map(function() {
     });
     this.route('teachers', function(){});
     this.route('substudents');
-    this.route('classes', function() {
-      this.route('detail');
-    });
+    this.route('classes');
     this.route('levels', function() {
       this.route('detail', {path: '/lessons/:id'});
       this.route('activities', {path: '/activities/:id'});
+    });
+    this.route('schedule', function() {
+      this.route('classes', function() {
+        this.route('detail');
+      });
     });
   });
 });

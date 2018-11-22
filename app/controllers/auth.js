@@ -7,6 +7,7 @@ export default Controller.extend({
   routing: service('-routing'),
   routeName: alias('routing.currentRouteName'),
 
+  selectedLecture: null,
   selectedSubscriber: null,
   selectedStudent: null,
   selectedTeacher: null,
@@ -18,6 +19,10 @@ export default Controller.extend({
   }),
 
   actions: {
+    createLecture() {
+      this.send('newRecord', 'lecture', 'selectedLecture');
+      this.send('openModal', 4);
+    },
     createStudent() {
       this.send('newRecord', 'student', 'selectedStudent');
       this.send('openModal', 2);

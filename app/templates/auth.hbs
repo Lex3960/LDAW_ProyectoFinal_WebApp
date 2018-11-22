@@ -22,15 +22,15 @@
         <img src="/media/books.jpeg">
       </div>
       <a><img class="circle" src="/media/admin.jpeg"></a>
-      <a><span class="white-text name">Admin 1</span></a>
-      <a><span class="white-text email">admin_academy@gmail.com</span></a>
+      <a><span class="white-text name">Bienvenido, Administrador 1</span></a>
+      <a><span class="white-text email">username@academydomain.com</span></a>
     </div></li>
     <li class="{{if (eq routeName 'auth.dashboard') 'active'}}">
       {{#link-to 'auth.dashboard'}}<i class="material-icons">dashboard</i>Dashboard{{/link-to}}
     </li>
     <li><a class="subheader">Administrativo</a></li>
     <li class="{{if (eq routeName 'auth.contracts.index') 'active'}}">
-      {{#link-to 'auth.contracts'}}<i class="material-icons">assignment</i>Contratos{{/link-to}}
+      {{#link-to 'auth.contracts'}}<i class="material-icons">account_balance</i>Contratos{{/link-to}}
     </li>
     <li class="{{if (eq routeName 'auth.subscribers.index') 'active'}}">
       {{#link-to 'auth.subscribers'}}<i class="material-icons">supervisor_account</i>Subscriptores{{/link-to}}
@@ -43,11 +43,11 @@
     </li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Académico</a></li>
-    <li class="{{if (eq routeName 'auth.classes.index') 'active'}}">
-      {{#link-to 'auth.classes'}}<i class="material-icons">class</i>Clases{{/link-to}}
+    <li class="{{if (eq routeName 'auth.schedule.index') 'active'}}">
+      {{#link-to 'auth.schedule'}}<i class="material-icons">book</i>Reservaciones{{/link-to}}
     </li>
     <li class="{{if (eq routeName 'auth.levels  .index') 'active'}}">
-      {{#link-to 'auth.levels'}}<i class="material-icons">school</i>Niveles{{/link-to}}
+      {{#link-to 'auth.levels'}}<i class="material-icons">assignment</i>Syllabus{{/link-to}}
     </li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Cuenta</a></li>
@@ -169,6 +169,42 @@
     </div>
   </div>
 
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <h4>{{if selectedLecture.isNew 'Nueva' 'Editar'}} Clase</h4>
+      <div class="row">
+        <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedTeacher.name}}
+                <label>Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                {{input type="text" class="validate active" value=selectedTeacher.last_name}}
+                <label>Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="number" type="text" class="validate" value=selectedTeacher.phone}}
+                <label>Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                {{input type="email" type="text" class="validate" value=selectedTeacher.mail}}
+                <label>Email</label>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer blue darken-2">
+      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedTeacher 'selectedTeacher'}}>Guardar</a>
+    </div>
+  </div>
+
 {{/jquery-wrapper}}
 
 <!-- FOOTER -->
@@ -222,7 +258,13 @@
                               <button class="waves-effect waves-red btn-flat white-text" {{action 'createSubscriber'}}>
                                 <i class="material-icons left">add</i>Nuevo Subscriptor
                               </button>
-                            {{/if}}
+                              {{else}}
+                                  {{#if (eq routeName 'auth.schedule.index')}}
+                                    <button class="waves-effect waves-red btn-flat white-text" {{action 'createLecture'}}>
+                                      <i class="material-icons left">add</i>Nueva Clase
+                                    </button>
+                                  {{/if}}
+                              {{/if}}
                         {{/if}}
                     {{/if}}
                 {{/if}}
