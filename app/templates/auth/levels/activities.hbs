@@ -24,7 +24,7 @@
     right: 64px;
   }
 </style>
-<nav class="red lighten-1">
+<nav class="red darken-3">
   <div class="row">
     <div class="col s12">
       <div class="nav-wrapper">
@@ -58,7 +58,7 @@
                       <img src="/media/student.png" alt="" class="circle">
                       <span class="title">{{activity.activity_type.name}}</span>
                       <p>{{activity.lesson.level.name}}</p>
-                      <a class="secondary-content btn-floating right red darken-2" {{action 'deleteActivity' activity}} ><i class="material-icons">delete</i></a>
+                      <a class="secondary-content btn-floating right red darken-3" {{action 'deleteActivity' activity}} ><i class="material-icons">delete</i></a>
                     </li>
                   {{else}}
                     <li class="collection-item">No se han agregado actividades a la Lección.</li>
@@ -104,7 +104,7 @@
       </div>
 
       <div class="row">
-        {{#link-to 'auth.levels.detail' model.lesson.level.id class="waves-effect waves-light btn red darken-2 left"}}
+        {{#link-to 'auth.levels.detail' model.lesson.level.id class="waves-effect waves-light btn red darken-3 left"}}
           <i class="material-icons left">arrow_back</i> Aceptar
         {{/link-to}}
       </div>

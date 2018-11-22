@@ -53,6 +53,12 @@ export default Controller.extend({
       this.get('parent').send('createReservation');
     },
 
+    editReservation(reservation) {
+      let selectedLecture = this.get('model.lecture');
+      this.get('parent').set('selectedLecture', selectedLecture);
+      this.get('parent').send('editReservation', reservation);
+    },
+
     deleteReservation(reservation){
       window.swal({
         title: 'Confirmación',

@@ -10,15 +10,13 @@ export default Controller.extend({
         title: "Detalle",
         template: "components/models-table/expand-row-cell",
         mayBeHidden: false
-      }, {
+      }
+      , {
         propertyName: "classroom",
         title: "Aula",
         filterPlaceholder: 'Búsqueda'
-      }, {
-        propertyName: "teacher.fullName",
-        title: "Profesor",
-        filterPlaceholder: 'Búsqueda'
-      }, {
+      }
+      , {
         propertyName: "dateString",
         title: "Fecha",
         filterPlaceholder: 'Búsqueda'

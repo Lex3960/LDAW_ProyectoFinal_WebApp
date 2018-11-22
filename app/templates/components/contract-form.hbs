@@ -1,6 +1,6 @@
 <style>
   i.icon-red {
-      color: red;
+      color: #c62828;
   }
   .ember-power-select-option, .ember-power-select-multiple-option {
    margin-right:1em;
@@ -58,7 +58,7 @@
                       <img src="/media/student.png" alt="" class="circle">
                       <span class="title">{{studentContract.student.fullName}}</span>
                       <p>Agregado en {{studentContract.startDateString}} </p>
-                      <a class="secondary-content btn-floating right red darken-2" {{action 'removeStudent' studentContract}} ><i class="material-icons">delete</i></a>
+                      <a class="secondary-content btn-floating right red darken-3" {{action 'removeStudent' studentContract}} ><i class="material-icons">delete</i></a>
                     </li>
                   {{else}}
                     <li class="collection-item">No se han agregado alumnos al contrato.</li>
@@ -79,7 +79,7 @@
                 onchange=(action (mut selectedStudents))
                 as |student|}}
                 {{#if (array-contains currentContracts student.id property='student.id')}}
-                  {{student.fullName}} <span class="new badge red" data-badge-caption="Ya agregado."></span>
+                  {{student.fullName}} <span class="new badge red darken-3" data-badge-caption="Ya agregado."></span>
                 {{else}}
                   {{student.fullName}}
                 {{/if}}
@@ -104,7 +104,7 @@
       </div>
 
       <div class="row">
-        {{#link-to 'auth.contracts' class="waves-effect waves-light btn red left"}}
+        {{#link-to 'auth.contracts' class="waves-effect waves-light btn red darken-3 left"}}
           <i class="material-icons right">cancel</i> Cancelar
         {{/link-to}}
         <button type="submit" class="waves-effect waves-light btn light-blue darken-4 right" {{action 'saveContract'}}>

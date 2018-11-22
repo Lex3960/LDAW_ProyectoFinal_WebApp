@@ -3,10 +3,10 @@
     display: none;
   }
   .clearFilters {
-    background-color: #EF5350;
+    background-color: #c62828;
   }
   .pagination li.active {
-    background-color: #1976d2;
+    background-color: #01579b;
   }
   .ember-text-field{
     color: black;
@@ -44,6 +44,9 @@
       display: table;
       table-layout: fixed;
   }
+  .expand-row {
+    /* display: list-item; */
+  }
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #bdbdbd ;
     opacity: 1; /* Firefox */
@@ -55,8 +58,7 @@
     content: "expand_more";
   }
 </style>
-
-<nav class="red lighten-1">
+<nav class="red darken-3">
   <div class="row">
     <div class="col s12">
       <div class="nav-wrapper">
@@ -88,7 +90,7 @@
       multipleExpand=false
       showComponentFooter=true
       useNumericPagination=true
-      pageSize=5
+      pageSize=4
       delete='deleteLecture'
       edit='editLecture'
     }}

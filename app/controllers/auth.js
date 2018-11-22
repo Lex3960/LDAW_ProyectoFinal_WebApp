@@ -80,13 +80,13 @@ export default Controller.extend({
       })
     },
     editReservation(reservation) {
-      this.send('editRecord', reservation, 'reservation');
-      reservation.get('activity').then((activity)=>{
+      this.send('editRecord', reservation, 'selectedReservation');
+      return reservation.get('activity').then((activity)=>{
         this.set('selectedActivity', activity);
         return reservation.get('class').then((lecture)=>{
           this.set('selectedLecture', lecture);
           return reservation.get('student').then((student)=>{
-            this.set('selectedLecture', student)
+            this.set('selectedStudent', student)
           }).catch(()=>{
             this.set('selectedStudent', null);
           })
