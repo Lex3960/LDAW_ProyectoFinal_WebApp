@@ -17,11 +17,33 @@
   .table-header-no-sorting:hover {
     cursor: auto;
   }
-  .table-div {
-    height: 57vh;
-    overflow-y: scroll;
+  .table-container {
+    height: 10em;
   }
-
+  table {
+      display: flex;
+      flex-flow: column;
+      height: 52vh;
+      width: 100%;
+  }
+  table thead {
+      flex: 0 0 auto;
+      width: calc(100% - 0.9em);
+  }
+  table tbody {
+      /* body takes all the remaining available space */
+      flex: 1 1 auto;
+      display: block;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+  table tbody tr {
+      width: 100%;
+  }
+  table thead, table tbody tr {
+      display: table;
+      table-layout: fixed;
+  }
   .expand-row {
     /* display: list-item; */
   }
@@ -57,7 +79,7 @@
 </div>
 
 <div class="row">
-  <div class="container table-div col s10 offset-s1">
+  <div class="container table-container col s10 offset-s1">
     {{models-table
       data=model
       columns=columns
@@ -67,7 +89,9 @@
       filteringIgnoreCase=true
       expandedRowTemplate='row-student'
       multipleExpand=false
-      showComponentFooter=false
+      showComponentFooter=true
+      useNumericPagination=true
+      pageSize=5
       delete='deleteStudent'
       edit='editStudent'
     }}

@@ -11,7 +11,7 @@ export default Controller.extend({
         template: "components/models-table/expand-row-cell",
         mayBeHidden: false
       }, {
-        propertyName: "clasroom",
+        propertyName: "classroom",
         title: "Aula",
         filterPlaceholder: 'Búsqueda'
       }, {
@@ -19,12 +19,12 @@ export default Controller.extend({
         title: "Profesor",
         filterPlaceholder: 'Búsqueda'
       }, {
-        propertyName: "start_date",
-        title: "Inicio",
+        propertyName: "dateString",
+        title: "Fecha",
         filterPlaceholder: 'Búsqueda'
       }, {
-        propertyName: "start_date",
-        title: "Término",
+        propertyName: "scheduleString",
+        title: "Horario",
         filterPlaceholder: 'Búsqueda'
       }, {
         title: "Acciones",
@@ -48,10 +48,10 @@ export default Controller.extend({
 
   actions: {
       deleteLecture(lecture){
-        this.get('parent').send('deleteLecture', lecture);
+        this.get('parent').send('deleteRecord', lecture);
       },
 
-      deleteLecture(lecture) {
+      editLecture(lecture) {
         this.get('parent').send('editLecture', lecture);
       },
   }

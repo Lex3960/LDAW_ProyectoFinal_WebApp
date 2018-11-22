@@ -6,7 +6,7 @@ export default Component.extend({
   recordID: null,
 
   reservations: computed('recordID', function(){
-    return this.get('store').query('reservation', {student_id: this.get('record.id')});
+    return this.get('store').query('reservation', {class_id: this.get('record.id')});
   }),
 
   init() {

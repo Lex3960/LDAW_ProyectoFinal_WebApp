@@ -9,7 +9,6 @@ export default DS.Model.extend({
   }),
   phone: DS.attr('string'),
   email: DS.attr('string'),
-  current_activity: DS.belongsTo('reservation'),
   student_contracts: DS.hasMany('student-contract'),
   reservations: DS.hasMany('reservation')
 });

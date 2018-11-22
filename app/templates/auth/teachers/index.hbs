@@ -14,19 +14,41 @@
   .table-header:hover {
     cursor: pointer;
   }
-  .table-div {
-    height: 57vh;
-    overflow-y: scroll;
-  }
   .table-header-no-sorting:hover {
     cursor: auto;
+  }
+  .table-container {
+    height: 10em;
+  }
+  table {
+      display: flex;
+      flex-flow: column;
+      height: 52vh;
+      width: 100%;
+  }
+  table thead {
+      flex: 0 0 auto;
+      width: calc(100% - 0.9em);
+  }
+  table tbody {
+      /* body takes all the remaining available space */
+      flex: 1 1 auto;
+      display: block;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+  table tbody tr {
+      width: 100%;
+  }
+  table thead, table tbody tr {
+      display: table;
+      table-layout: fixed;
   }
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #bdbdbd ;
     opacity: 1; /* Firefox */
   }
 </style>
-
 <nav class="red lighten-1">
   <div class="row">
     <div class="col s12">
@@ -47,14 +69,15 @@
 </div>
 
 <div class="row">
-  <div class="table-div container col s10 offset-s1">
+  <div class="table-div table-container col s10 offset-s1">
     {{models-table
       data=model
       columns=columns
       showColumnsDropdown=false
       customMessages=customMessages
       filteringIgnoreCase=true
-      showComponentFooter=false
+      useNumericPagination=true
+      pageSize=5
       delete='deleteTeacher'
       edit='editTeacher'
     }}

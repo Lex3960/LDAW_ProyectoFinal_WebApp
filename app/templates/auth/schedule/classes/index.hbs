@@ -1,1 +1,121 @@
-{{outlet}}
+<style type="text/css">
+  .md-table-header {
+    display: none;
+  }
+  .clearFilters {
+    background-color: #EF5350;
+  }
+  .pagination li.active {
+    background-color: #1976d2;
+  }
+  .ember-text-field{
+    color: black;
+  }
+  .table-header:hover {
+    cursor: pointer;
+  }
+  .table-header-no-sorting:hover {
+    cursor: auto;
+  }
+  .table-container {
+    height: 10em;
+  }
+  .footerBottom {
+    display: none;
+  }
+  .footerBottomChild {
+    width:100%;
+    position: absolute;
+    padding-left: 300px;
+    right: 0;
+    bottom: 0;
+  }
+  table {
+      display: flex;
+      flex-flow: column;
+      height: 52vh;
+      width: 100%;
+  }
+  table thead {
+      flex: 0 0 auto;
+      width: calc(100% - 0.9em);
+  }
+  table tbody {
+      /* body takes all the remaining available space */
+      flex: 1 1 auto;
+      display: block;
+      overflow-y: scroll;
+  }
+  table tbody tr {
+      width: 100%;
+  }
+  table thead, table tbody tr {
+      display: table;
+      table-layout: fixed;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #bdbdbd ;
+    opacity: 1; /* Firefox */
+  }
+
+  .changeFilterForColumn {
+    display: block;
+  }
+</style>
+
+<nav class="red lighten-1">
+  <div class="row">
+    <div class="col s12">
+      <div class="nav-wrapper">
+        <div class="col s12">
+         {{#link-to 'auth.dashboard' class="breadcrumb"}}My English Academy {{/link-to}}
+         {{#link-to 'auth.schedule' class="breadcrumb"}}Clases {{/link-to}}
+         {{#link-to 'auth.schedule.classes.index' model.lecture.id class="breadcrumb"}} {{model.lecture.dateString}} {{/link-to}}
+       </div>
+       </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <blockquote> <h4> {{model.lecture.classroom}} {{model.lecture.scheduleString}}, <i>Reservaciones</i></h4> </blockquote>
+  </div>
+</div>
+
+<div class="row">
+  <div class="table-container container col s10 offset-s1">
+    {{models-table
+      data=model.reservations
+      columns=columns
+      showColumnsDropdown=false
+      customMessages=customMessages
+      filteringIgnoreCase=true
+      useNumericPagination=true
+      pageSize=5
+      delete='deleteReservation'
+      edit='editReservation'
+    }}
+  </div>
+</div>
+
+<footer class="page-footer footerBottomChild blue darken-1">
+  <div class="container">
+    <div class="row">
+      <div class="col s6 offset">
+        <h5 class="white-text">My English Academy</h5>
+      </div>
+      <div class="col s6">
+        <button class="waves-effect waves-red btn-flat white-text" {{action 'newReservation'}}>
+          <i class="material-icons left">add</i>Nueva Reservación
+        </button>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2018 English Academy
+        <a class="grey-text text-lighten-4 right" href="https://github.com/Lex3960/LDAW_ProyectoFinal_WebApp" target="_blank">Developed by Álex Reséndiz</a>
+      </div>
+    </div>
+  </div>
+</footer>

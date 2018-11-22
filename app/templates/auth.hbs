@@ -12,6 +12,10 @@
   .visibleNav {
     transform: translateX(0%) !important;
   }
+
+  .ember-power-select-clear-btn {
+    display: none;
+  }
 </style>
 
 <!-- SIDENAV -->
@@ -44,7 +48,7 @@
     <li><div class="divider"></div></li>
     <li><a class="subheader">Académico</a></li>
     <li class="{{if (eq routeName 'auth.schedule.index') 'active'}}">
-      {{#link-to 'auth.schedule'}}<i class="material-icons">book</i>Reservaciones{{/link-to}}
+      {{#link-to 'auth.schedule'}}<i class="material-icons">book</i>Calendario{{/link-to}}
     </li>
     <li class="{{if (eq routeName 'auth.levels  .index') 'active'}}">
       {{#link-to 'auth.levels'}}<i class="material-icons">assignment</i>Syllabus{{/link-to}}
@@ -92,7 +96,7 @@
       </div>
     </div>
     <div class="modal-footer blue darken-2">
-      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <button class="modal-close waves-effect waves-green btn-flat white-text left" {{action 'closeModal' 1}}>cancel</button>
       <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedSubscriber 'selectedSubscriber'}}>Guardar</a>
     </div>
   </div>
@@ -128,7 +132,7 @@
       </div>
     </div>
     <div class="modal-footer blue darken-2">
-      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <button class="modal-close waves-effect waves-green btn-flat white-text left" {{action 'closeModal' 2}}>cancel</button>
       <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedStudent 'selectedStudent'}}>Guardar</a>
     </div>
   </div>
@@ -164,7 +168,7 @@
       </div>
     </div>
     <div class="modal-footer blue darken-2">
-      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <button class="modal-close waves-effect waves-green btn-flat white-text left" {{action 'closeModal' 3}}>cancel</button>
       <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedTeacher 'selectedTeacher'}}>Guardar</a>
     </div>
   </div>
@@ -175,13 +179,14 @@
       <div class="row">
         <form class="col s12">
             <div class="row">
-              <div class="input-field col s6">
+              <div class="input-field col s12">
                 {{input type="text" class="validate active" value=selectedLecture.classroom}}
                 <label>Espacio</label>
               </div>
             </div>
             <div class="row">
-              <div class="col s8">
+              <div class="col s7">
+                <label>Día</label>
                 {{#basic-dropdown
                   renderInPlace=true
                   as |dropdown|}}
@@ -189,35 +194,120 @@
                     data-ebd-id="{{dropdown.uniqueId}}-trigger"
                     class="datepicker-demo-input"
                     onclick={{dropdown.actions.toggle}}
-                    value={{if selected (moment-format selected 'DD-MM-YYYY')}}
+                    value={{if selected (moment-format selected 'DD/MM/YYYY')}}
                     readonly>
                   {{#dropdown.content class="datepicker-demo-dropdown"}}
-                    {{#power-calendar class="demo-calendar-small"
-
+                    {{#power-calendar
+                      locale="es"
+                      class="demo-calendar-small"
                       center=center
                       onCenterChange=(action (mut center) value="date")
                       selected=selected
-                      onSelect=(action (mut selected) value="date") as |calendar|}}
+                      onSelect=(action (mut selected) value="date")
+                      as |calendar|}}
                       {{calendar.nav}}
                       {{calendar.days}}
                     {{/power-calendar}}
                   {{/dropdown.content}}
                 {{/basic-dropdown}}
               </div>
-              <div class="col s4">
+              <div class="col s5">
+                <label>Hora</label>
                 {{time-picker
-                  selectedTime=timeSelected
-                  onchange=(action (mut timeSelected) selectedTime)
-                  increment=5
+                  renderInPlace=true
+                  selectedTime=auxTime
+                  onchange=(action 'changeTime')
+                  startTimeHour=7
+                  endTimeHour=20
+                  increment=30
                 }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <label>Profesor</label>
+                {{#power-select
+                  renderInPlace=true
+                  selected=selectedTeacher
+                  options=teacherList
+                  onchange=(action (mut selectedTeacher))
+                  as |teacher|}}
+                  {{teacher.fullName}}
+                {{/power-select}}
               </div>
             </div>
         </form>
       </div>
     </div>
     <div class="modal-footer blue darken-2">
-      <button class="modal-close waves-effect waves-green btn-flat white-text left">cancel</button>
+      <button class="modal-close waves-effect waves-green btn-flat white-text left" {{action 'closeModal' 4}}>cancel</button>
       <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedLecture 'selectedLecture'}}>Guardar</a>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>{{if selectedReservation.isNew 'Nueva' 'Editar'}} Reservación</h4>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="col s12">
+              <label>Alumno</label>
+                {{#power-select
+                  renderInPlace=true
+                  disabled=(not-eq selectedReservation.isNew true)
+                  selected=selectedStudent
+                  options=studentList
+                  onchange=(action (mut selectedStudent))
+                  as |student|}}
+                  {{student.fullName}}
+                {{/power-select}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s8">
+              <label>Clase</label>
+              {{#power-select
+                renderInPlace=true
+                disabled=true
+                selected=selectedLecture
+                options=lectureList
+                onchange=(action (mut selectedLecture))
+                as |lecture|}}
+                {{lecture.classroom}} {{lecture.dateString}} {{lecture.scheduleString}}
+              {{/power-select}}
+            </div>
+            <div class="col s4">
+              <label>Actividad</label>
+              {{#power-select
+                renderInPlace=true
+                disabled=(not-eq selectedReservation.isNew true)
+                selected=selectedActivity
+                options=activityList
+                onchange=(action (mut selectedActivity))
+                as |activity|}}
+                {{activity.lesson.level.name}} {{activity.lesson.name}}
+              {{/power-select}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <label>
+                  {{input type="checkbox" class="filled-in" checked=selectedReservation.status}}
+                  <span>Asistencia</span>
+                </label>
+              </div>
+              <div class="input-field col s6">
+                {{input type="number" disabled=(not selectedReservation.status) class="validate" value=selectedReservation.grade}}
+                <label>Calificación</label>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer blue darken-2">
+      <button class="modal-close waves-effect waves-green btn-flat white-text left" {{action 'closeModal' 5}}>cancel</button>
+      <a href="" class="modal-close waves-effect waves-green btn-flat white-text right" {{action 'saveRecord' selectedReservation 'selectedReservation'}}>Guardar</a>
     </div>
   </div>
 
@@ -279,7 +369,8 @@
                                     <button class="waves-effect waves-red btn-flat white-text" {{action 'createLecture'}}>
                                       <i class="material-icons left">add</i>Nueva Clase
                                     </button>
-                                  {{/if}}
+
+                                    {{/if}}
                               {{/if}}
                         {{/if}}
                     {{/if}}

@@ -58,7 +58,6 @@
                       <img src="/media/student.png" alt="" class="circle">
                       <span class="title">{{studentContract.student.fullName}}</span>
                       <p>Agregado en {{studentContract.startDateString}} </p>
-                      <a class="tertiary-content btn-floating left blue darken-2"><i class="material-icons">edit</i></a>
                       <a class="secondary-content btn-floating right red darken-2" {{action 'removeStudent' studentContract}} ><i class="material-icons">delete</i></a>
                     </li>
                   {{else}}
